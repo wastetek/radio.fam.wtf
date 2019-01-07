@@ -1,0 +1,15 @@
+version: '2.1'
+services:
+  icecast:
+    image: threesquared/icecast:latest
+    container_name: icecast
+    ports:
+      - 8000:8000
+    volumes:
+      - "/path/to/config:/icecast"
+  ezstream:
+    image: threesquared/ezstream:latest
+    container_name: ezstream
+    volumes:
+      - "/path/to/config:/ezstream"
+      - "/path/to/music:/music"
