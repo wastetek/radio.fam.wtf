@@ -23,13 +23,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
         @import url('https://use.fontawesome.com/releases/v5.0.9/css/all.css');
+        @import url('https://fonts.googleapis.com/css?family=Varela+Round');
         body {
             margin: 0;
             padding: 0;
             overflow: hidden;
+            font-family: 'Varela Round', sans-serif;
+            color: white;
+            background-image: linear-gradient(#005C99, #3D0099);
+        }
+        a, a:hover, a:active, a:visited {
+            color: white;
+            text-decoration: none;
+        }
+        canvas {
             font-family: 'Font Awesome 5 Free';
             font-weight: 900;
-            background-image: linear-gradient(#005C99, #3D0099);
+        }
+        footer {
+            bottom: 0;
+            margin: auto;
+            width: 100%;
+            position: fixed;
+            text-align: center;
+            padding: 5px;
+            font-size: 12px;
         }
     </style>
 </head>
@@ -39,6 +57,7 @@
     <audio id="audio" src="https://radio.fam.wtf/stream" preload="auto">
         Your browser does not support the <code>audio</code> element.
     </audio>
+    <footer><a href="https://github.com/threesquared/radio.fam.wtf">Source</a> | <a href="https://radio.fam.wtf/stream.m3u">M3U File</a></footer>
 </body>
 
 </html>
