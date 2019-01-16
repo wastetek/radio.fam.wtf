@@ -79,7 +79,7 @@ export default class Visualiser {
      * Draw a single bar.
      */
     drawBar(x1, y1, x2, y2, width, frequency) {
-        const lineColor = `rgb(${frequency}, ${frequency}, 205)`;
+        const lineColor = `rgb(${frequency}, ${frequency}, 153)`;
         this.context.strokeStyle = lineColor;
         this.context.lineWidth = width;
         this.context.beginPath();
