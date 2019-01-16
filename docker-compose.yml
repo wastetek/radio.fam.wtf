@@ -13,3 +13,5 @@ services:
     volumes:
       - "/path/to/config:/ezstream"
       - "/path/to/music:/music"
+  radio:
+    build: ./
