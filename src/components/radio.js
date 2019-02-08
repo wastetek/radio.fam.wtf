@@ -6,15 +6,16 @@ export default class Radio {
      *
      * @param audio
      * @param canvas
+     * @param button
      */
-    constructor(audio, canvas) {
+    constructor(audio, canvas, button) {
         this.audio = audio;
         this.canvas = canvas;
         this.playing = false;
 
         this.visualiser = new Visualiser(this.audio, this.canvas);
 
-        this.canvas.addEventListener('click', () => {
+        button.addEventListener('click', () => {
             if (this.playing === false) {
                 this.play();
             } else {

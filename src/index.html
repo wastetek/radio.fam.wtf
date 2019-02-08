@@ -33,10 +33,6 @@
             color: white;
             text-decoration: none;
         }
-        canvas {
-            font-family: 'Font Awesome 5 Free';
-            font-weight: 900;
-        }
         footer {
             bottom: 0;
             margin: auto;
@@ -46,11 +42,23 @@
             padding: 5px;
             font-size: 12px;
         }
+        #button {
+            width: 200px;
+            height: 200px;
+            margin: -100px 0 auto -100px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            text-align: center;
+            line-height: 215px;
+            border-radius: 50%;
+        }
     </style>
 </head>
 
 <body>
     <canvas id="renderer"></canvas>
+    <a href="#" id="button"><i id="icon" class="fas fa-play fa-2x"></i></a>
     <audio id="audio" src="https://radio.fam.wtf/stream" preload="auto" crossorigin="anonymous">
         Your browser does not support the <code>audio</code> element.
     </audio>

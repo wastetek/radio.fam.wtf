@@ -4,33 +4,22 @@ export default class Circle {
      *
      * @param canvas
      * @param context
+     * @param radius
      */
-    constructor(canvas, context) {
+    constructor(canvas, context, radius = 100) {
         this.canvas = canvas;
         this.context = context;
-        this.radius = 100;
+        this.radius = radius;
 
-        document.addEventListener('mousemove', e => {
-            e.preventDefault();
-            e.stopPropagation();
-
-            this.context.beginPath();
-            this.context.arc(this.center_x, this.center_y, this.radius, 0, 2 * Math.PI);
-
-            if (this.context.isPointInPath(e.clientX, e.clientY)){
-                this.canvas.style.cursor = 'pointer';
-            } else {
-                this.canvas.style.cursor = 'default';
-            }
-        });
+        this.icon = document.getElementById('icon');
     }
 
     /**
-     * Draw a circle with the supplied text in the center.
+     * Draw a circle with the supplied icon in the center.
      *
-     * @param text
+     * @param icon
      */
-    draw(text) {
+    draw(state = 'paused') {
         this.initCanvas();
 
         this.context.beginPath();
@@ -38,20 +27,17 @@ export default class Circle {
         this.context.strokeStyle = 'white';
         this.context.stroke();
 
-        if (!text || text === 'paused') {
-            text = "\uf04b";
-        } else if (text === 'playing') {
-            text = '\uf04c';
-        } else if (text === 'loading') {
-            text = "Loading";
+        let icon;
+
+        if (state === 'paused') {
+            icon = 'fa-play';
+        } else if (state === 'playing') {
+            icon = 'fa-pause';
+        } else if (state === 'loading') {
+            icon = 'fa-spinner fa-pulse';
         }
 
-        document.fonts.ready.then(() => {
-            this.context.font = '900 24pt "Font Awesome 5 Free"';
-            this.context.fillStyle = 'white'
-            this.context.textAlign = 'center';
-            this.context.fillText(text, this.center_x, this.center_y + 15);
-        })
+        this.icon.className = `fas ${icon} fa-2x`;
     }
 
     /**

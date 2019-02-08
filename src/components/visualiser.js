@@ -57,19 +57,19 @@ export default class Visualiser {
         this.analyser.getByteFrequencyData(this.dataArray);
 
         const bars = 200;
-        const bar_width = 2;
+        const barWidth = 2;
         const radius = 100;
-        const center_x = this.canvas.width / 2;
-        const center_y = this.canvas.height / 2;
+        const centerX = this.canvas.width / 2;
+        const centerY = this.canvas.height / 2;
 
         for (let i = 0; i < bars; i++) {
             const rads = Math.PI * 2 / bars;
-            const bar_height = this.dataArray[i] * 0.7;
-            const x = center_x + Math.cos(rads * i) * (radius);
-            const y = center_y + Math.sin(rads * i) * (radius);
-            const x_end = center_x + Math.cos(rads * i) * (radius + bar_height);
-            const y_end = center_y + Math.sin(rads * i) * (radius + bar_height);
-            this.drawBar(x, y, x_end, y_end, bar_width, this.dataArray[i]);
+            const barHeight = this.dataArray[i] * 0.7;
+            const x = centerX + Math.cos(rads * i) * (radius);
+            const y = centerY + Math.sin(rads * i) * (radius);
+            const xEnd = centerX + Math.cos(rads * i) * (radius + barHeight);
+            const yEnd = centerY + Math.sin(rads * i) * (radius + barHeight);
+            this.drawBar(x, y, xEnd, yEnd, barWidth, this.dataArray[i]);
         }
 
         this.requestID = window.requestAnimationFrame(this.animate.bind(this));
