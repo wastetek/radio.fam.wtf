@@ -1,5 +1,3 @@
-import Circle from './circle';
-
 export default class Visualiser {
     /**
      * Create a new Visualiser.
@@ -7,14 +5,12 @@ export default class Visualiser {
      * @param audio
      * @param canvas
      */
-    constructor(audio, canvas) {
+    constructor(audio, canvas, icon) {
         this.audio = audio;
         this.canvas = canvas;
+        this.icon = icon;
 
         this.context = this.canvas.getContext('2d');
-
-        this.circle = new Circle(this.canvas, this.context);
-        this.circle.draw('paused');
     }
 
     /**
@@ -32,10 +28,22 @@ export default class Visualiser {
     }
 
     /**
+     * Set the canvas to the window width and get the center point.
+     */
+    initCanvas() {
+        this.canvas.width = window.innerWidth;
+        this.canvas.height = window.innerHeight;
+
+        this.centerX = this.canvas.width / 2;
+        this.centerY = this.canvas.height / 2;
+    }
+
+    /**
      * Stop visualisation animations.
      */
     stop() {
-        this.circle.draw('paused');
+        this.setIcon('paused');
+        this.initCanvas();
         window.cancelAnimationFrame(this.requestID);
     }
 
@@ -49,26 +57,26 @@ export default class Visualiser {
         }
 
         if (this.audio && this.audio.readyState < 3) {
-            this.circle.draw('loading');
+            this.setIcon('loading');
         } else {
-            this.circle.draw('playing');
+            this.setIcon('playing');
         }
+
+        this.initCanvas();
 
         this.analyser.getByteFrequencyData(this.dataArray);
 
         const bars = 200;
         const barWidth = 2;
         const radius = 100;
-        const centerX = this.canvas.width / 2;
-        const centerY = this.canvas.height / 2;
 
         for (let i = 0; i < bars; i++) {
             const rads = Math.PI * 2 / bars;
             const barHeight = this.dataArray[i] * 0.7;
-            const x = centerX + Math.cos(rads * i) * (radius);
-            const y = centerY + Math.sin(rads * i) * (radius);
-            const xEnd = centerX + Math.cos(rads * i) * (radius + barHeight);
-            const yEnd = centerY + Math.sin(rads * i) * (radius + barHeight);
+            const x = this.centerX + Math.cos(rads * i) * (radius);
+            const y = this.centerY + Math.sin(rads * i) * (radius);
+            const xEnd = this.centerX + Math.cos(rads * i) * (radius + barHeight);
+            const yEnd = this.centerY + Math.sin(rads * i) * (radius + barHeight);
             this.drawBar(x, y, xEnd, yEnd, barWidth, this.dataArray[i]);
         }
 
@@ -86,5 +94,24 @@ export default class Visualiser {
         this.context.moveTo(x1, y1);
         this.context.lineTo(x2, y2);
         this.context.stroke();
+    }
+
+    /**
+     * Update the icon state.
+     *
+     * @param state
+     */
+    setIcon(state) {
+        let icon;
+
+        if (state === 'paused') {
+            icon = 'fa-play';
+        } else if (state === 'playing') {
+            icon = 'fa-pause';
+        } else if (state === 'loading') {
+            icon = 'fa-spinner fa-pulse';
+        }
+
+        this.icon.className = `fas ${icon} fa-2x`;
     }
 }

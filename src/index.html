@@ -21,6 +21,10 @@
     <style>
         @import url('https://use.fontawesome.com/releases/v5.0.9/css/all.css');
         @import url('https://fonts.googleapis.com/css?family=Varela+Round');
+        html,
+        body {
+            height: 100%;
+        }
         body {
             margin: 0;
             padding: 0;
@@ -52,6 +56,10 @@
             text-align: center;
             line-height: 215px;
             border-radius: 50%;
+            border: 1px solid #CCC;
+            box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
         }
     </style>
 </head>
@@ -62,7 +70,7 @@
     <audio id="audio" src="https://radio.fam.wtf/stream" preload="auto" crossorigin="anonymous">
         Your browser does not support the <code>audio</code> element.
     </audio>
-    <footer><a href="https://github.com/threesquared/radio.fam.wtf">Source</a> | <a href="https://radio.fam.wtf/stream.m3u">Stream</a></footer>
+    <footer><a href="https://github.com/threesquared/radio.fam.wtf" target="_blank">Source</a> | <a href="https://radio.fam.wtf/stream.m3u" target="_blank">Stream</a></footer>
 </body>
 
 </html>

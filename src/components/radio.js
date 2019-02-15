@@ -13,7 +13,7 @@ export default class Radio {
         this.canvas = canvas;
         this.playing = false;
 
-        this.visualiser = new Visualiser(this.audio, this.canvas);
+        this.visualiser = new Visualiser(this.audio, this.canvas, document.getElementById('icon'));
 
         button.addEventListener('click', () => {
             if (this.playing === false) {
