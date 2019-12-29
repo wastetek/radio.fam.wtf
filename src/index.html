@@ -38,12 +38,11 @@
             text-decoration: none;
         }
         footer {
-            bottom: 0;
-            margin: auto;
-            width: 100%;
             position: fixed;
-            text-align: center;
-            padding: 5px;
+            left: 50%;
+            bottom: 10px;
+            transform: translate(-50%, -50%);
+            margin: 0 auto;
             font-size: 12px;
         }
         #button {
@@ -70,7 +69,9 @@
     <audio id="audio" src="https://radio.fam.wtf/stream" preload="auto" crossorigin="anonymous">
         Your browser does not support the <code>audio</code> element.
     </audio>
-    <footer><a href="https://github.com/threesquared/radio.fam.wtf" target="_blank">Source</a> | <a href="https://radio.fam.wtf/stream.m3u" target="_blank">Stream</a></footer>
+    <footer>
+        <a href="https://github.com/threesquared/radio.fam.wtf" target="_blank">About</a> | <a href="https://radio.fam.wtf/stream.m3u" target="_blank">Stream</a> | Listeners: <span id="listeners"></span>
+    </footer>
 </body>
 
 </html>
