@@ -7,11 +7,12 @@ services:
       - 8000:8000
     volumes:
       - "/path/to/config:/icecast"
-  ezstream:
-    image: threesquared/ezstream:latest
-    container_name: ezstream
+  liquidsoap:
+    image: phasecorex/liquidsoap:latest
+    container_name: liquidsoap
+    command: /liquidsoap/config.liq
     volumes:
-      - "/path/to/config:/ezstream"
+      - "/path/to/config:/liquidsoap"
       - "/path/to/music:/music"
   radio:
     build: ./
